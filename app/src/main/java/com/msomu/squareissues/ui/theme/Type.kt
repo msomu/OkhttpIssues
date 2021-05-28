@@ -50,6 +50,11 @@ val Typography = Typography(
     subtitle1 = TextStyle(
         fontFamily = Rubik,
         fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
+    subtitle2 = TextStyle(
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Bold,
         fontSize = 12.sp
     ),
     button = TextStyle(

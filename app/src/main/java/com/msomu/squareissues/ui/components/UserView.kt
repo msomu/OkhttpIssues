@@ -24,7 +24,7 @@ import com.msomu.squareissues.util.toDate
 
 @Composable
 fun UserView(user: User, date : String) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Image(
             painter = rememberCoilPainter(
                 request = user.avatar_url,
@@ -38,7 +38,7 @@ fun UserView(user: User, date : String) {
         )
         Column {
             Text(text = user.login, style= MaterialTheme.typography.subtitle1)
-            Text(text = date.toDate(), style= MaterialTheme.typography.body2)
+            Text(text = date.toDate(), style= MaterialTheme.typography.body1)
         }
     }
 }

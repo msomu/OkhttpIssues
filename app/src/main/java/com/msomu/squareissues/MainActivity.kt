@@ -3,11 +3,16 @@ package com.msomu.squareissues
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.msomu.squareissues.mock.mockIssues
-import com.msomu.squareissues.ui.components.IssueItem
 import com.msomu.squareissues.ui.screen.Home
+import com.msomu.squareissues.ui.screen.IssueDetail
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,10 +23,21 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            SquareOkhttpIssuesTheme {
-                ProvideWindowInsets {
-                    Home()
-                }
+            OkHTTPApp()
+        }
+    }
+}
+
+@Composable
+fun OkHTTPApp() {
+    SquareOkhttpIssuesTheme {
+        ProvideWindowInsets {
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "home") {
+                composable("home") { Home() }
+                composable("issue/{issueId}",
+                    arguments = listOf(navArgument("issueId") { type = NavType.IntType })
+                ) { IssueDetail() }
             }
         }
     }

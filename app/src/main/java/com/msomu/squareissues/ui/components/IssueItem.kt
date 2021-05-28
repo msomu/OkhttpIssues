@@ -31,7 +31,7 @@ fun IssueItem(item: GithubIssuesItem) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().padding(16.dp)
             ) {
                 UserView(item.user, item.updated_at)
                 Status(item.state)
@@ -45,10 +45,6 @@ fun IssueItem(item: GithubIssuesItem) {
                 text = item.body.take(200)+ if(item.body.length > 200) "..." else "",
                 style = MaterialTheme.typography.body2,
                 modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
-            )
-            Divider(
-                modifier = Modifier.height(3.dp),
-                color = MaterialTheme.colors.onPrimary
             )
         }
     }

@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.google.accompanist.insets.statusBarsHeight
 import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.mock.mockIssues
