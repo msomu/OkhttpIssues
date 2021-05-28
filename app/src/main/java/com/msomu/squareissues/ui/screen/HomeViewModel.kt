@@ -3,6 +3,8 @@ package com.msomu.squareissues.ui.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msomu.squareissues.data.IssuesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -12,7 +14,8 @@ import kotlinx.coroutines.launch
  * HomeViewState that can be exposed by the [viewState] flow in order for the view to render
  * the relevant issues
  */
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val issuesRepository: IssuesRepository
 ) : ViewModel(){
 
