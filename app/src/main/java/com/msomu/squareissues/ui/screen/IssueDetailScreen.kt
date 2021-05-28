@@ -2,10 +2,11 @@ package com.msomu.squareissues.ui.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 @Composable
-fun IssueDetail(){
+fun IssueDetailScreen(issueId: Int, navigateBack: () -> Unit) {
 
 }
 
@@ -13,6 +14,6 @@ fun IssueDetail(){
 @Composable
 fun DefaultIssueDetailPreview() {
     SquareOkhttpIssuesTheme {
-        IssueDetail()
+        IssueDetailScreen(mockIssues()[0].id) {}
     }
 }

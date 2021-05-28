@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import com.msomu.squareissues.data.GithubIssuesItem
 
 @Composable
-fun Issues(issuesList: List<GithubIssuesItem>) {
+fun Issues(issuesList: List<GithubIssuesItem>, onIssueItemClick: (Int) -> Unit) {
     LazyColumn {
         items(issuesList){item->
-            IssueItem(item)
+            IssueItem(item, onIssueItemClick)
         }
     }
 }

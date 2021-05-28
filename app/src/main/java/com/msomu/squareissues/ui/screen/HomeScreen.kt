@@ -8,7 +8,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import com.google.accompanist.insets.statusBarsHeight
 import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.mock.mockIssues
@@ -17,12 +16,12 @@ import com.msomu.squareissues.ui.components.Issues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 @Composable
-fun Home() {
-    HomeContent(mockIssues())
+fun HomeScreen(openIssue: (Int) -> Unit) {
+    HomeContent(mockIssues(), openIssue)
 }
 
 @Composable
-fun HomeContent(issuesList : List<GithubIssuesItem>){
+fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,7 +36,7 @@ fun HomeContent(issuesList : List<GithubIssuesItem>){
                 .statusBarsHeight()
         )
         HomeAppBar(MaterialTheme.colors.background)
-        Issues(issuesList)
+        Issues(issuesList, openIssue)
     }
 }
 
@@ -45,6 +44,6 @@ fun HomeContent(issuesList : List<GithubIssuesItem>){
 @Composable
 fun DefaultPreview() {
     SquareOkhttpIssuesTheme {
-        Home()
+        HomeScreen {}
     }
 }
