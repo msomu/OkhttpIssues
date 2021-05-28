@@ -17,12 +17,14 @@ import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.components.HomeAppBar
 import com.msomu.squareissues.ui.components.Issues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
+import com.msomu.squareissues.util.Resource
 
 @Composable
 fun HomeScreen(openIssue: (Int) -> Unit) {
     val homeViewModel : HomeViewModel = hiltViewModel()
-    val currentState: State<HomeViewState> = homeViewModel.viewState.collectAsState()
-    HomeContent(currentState.value.issueLists, openIssue)
+    val currentState: State<Resource<List<GithubIssuesItem>>> = homeViewModel.viewState.collectAsState()
+    val githubIssues = currentState.value.data ?: emptyList()
+    HomeContent(githubIssues, openIssue)
 }
 
 @Composable

@@ -1,7 +1,8 @@
 package com.msomu.squareissues.util
 
+import android.util.Log
 import kotlinx.coroutines.flow.*
-
+const val TAG = "networkBoundResource"
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,
     crossinline fetch: suspend () -> RequestType,
@@ -9,7 +10,6 @@ inline fun <ResultType, RequestType> networkBoundResource(
     crossinline shouldFetch: (ResultType) -> Boolean = { true }
 ) = flow {
     val data = query().first()
-
     val flow = if (shouldFetch(data)) {
         emit(Resource.Loading(data))
 
@@ -22,6 +22,5 @@ inline fun <ResultType, RequestType> networkBoundResource(
     } else {
         query().map { Resource.Success(it) }
     }
-
     emitAll(flow)
 }
