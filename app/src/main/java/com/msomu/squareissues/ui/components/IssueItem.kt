@@ -19,7 +19,7 @@ import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 @Composable
-fun IssueItem(item: GithubIssuesItem, onClick: (Int) -> Unit) {
+fun IssueItem(item: GithubIssuesItem, isDetailPage: Boolean, onClick: (Int) -> Unit) {
     Card(
         shape = MaterialTheme.shapes.medium,
         elevation = 8.dp,
@@ -43,7 +43,7 @@ fun IssueItem(item: GithubIssuesItem, onClick: (Int) -> Unit) {
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
             Text(
-                text = item.body.take(200) + if (item.body.length > 200) "..." else "",
+                text = if (isDetailPage) item.body else item.body.take(200) + if (item.body.length > 200) "..." else "",
                 style = MaterialTheme.typography.body2,
                 modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
             )
@@ -56,6 +56,6 @@ fun IssueItem(item: GithubIssuesItem, onClick: (Int) -> Unit) {
 @Composable
 fun DefaultIssueItemPreview() {
     SquareOkhttpIssuesTheme {
-        IssueItem(mockIssues()[0]) { }
+        IssueItem(mockIssues()[0],true) { }
     }
 }

@@ -9,7 +9,7 @@ import com.msomu.squareissues.data.GithubIssuesItem
 fun Issues(issuesList: List<GithubIssuesItem>, onIssueItemClick: (Int) -> Unit) {
     LazyColumn {
         items(issuesList){item->
-            IssueItem(item, onIssueItemClick)
+            IssueItem(item, false,onIssueItemClick)
         }
     }
 }

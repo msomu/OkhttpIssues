@@ -6,5 +6,7 @@ data class GithubIssuesItem(
     val body: String,
     val user: User,
     val updated_at: String,
-    val state: String
+    val state: String,
+    val number: Int,
+    val comments_url: String,
 )
