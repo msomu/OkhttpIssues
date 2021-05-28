@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.insets.statusBarsHeight
 import com.msomu.squareissues.data.GithubIssuesItem
-import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.components.HomeAppBar
 import com.msomu.squareissues.ui.components.Issues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme

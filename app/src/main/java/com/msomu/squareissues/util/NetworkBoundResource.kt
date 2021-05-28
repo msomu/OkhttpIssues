@@ -1,8 +1,11 @@
 package com.msomu.squareissues.util
 
-import android.util.Log
-import kotlinx.coroutines.flow.*
-const val TAG = "networkBoundResource"
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+
 inline fun <ResultType, RequestType> networkBoundResource(
     crossinline query: () -> Flow<ResultType>,
     crossinline fetch: suspend () -> RequestType,
