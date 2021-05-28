@@ -47,9 +47,28 @@ fun IssueDetailContent(issueDetail: IssueDetail) {
                 )
             })
         LazyColumn {
-            item { IssueItem(item = issueDetail.githubIssuesItem, isDetailPage = true) {} }
+            val issue = issueDetail.githubIssuesItem
+            item { IssueItem(
+                user = issue.user,
+                isDetailPage = true,
+                id= issue.id,
+                body = issue.body,
+                title = issue.title,
+                status = issue.state,
+                updatedDate = issue.updated_at,
+                onClick = { }
+            ) }
             items(issueDetail.comments){item->
-
+                IssueItem(
+                    user = item.user,
+                    isDetailPage = true,
+                    id= item.id,
+                    body = item.body,
+                    title = null,
+                    status = null,
+                    updatedDate = item.updated_at,
+                    onClick = { }
+                )
             }
         }
     }

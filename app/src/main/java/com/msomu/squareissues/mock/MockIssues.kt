@@ -28,6 +28,7 @@ fun mockIssueComments(): MutableList<Comment> {
 fun mockIssueComment() = Comment(
     user = mockUser(),
     updated_at = "2021-05-27T14:46:17Z",
+    id= 847790057,
     body = "Can you reproduce with a test case that doesn't import from our internal APIs? Everything in internal is implementation details that should never be used directly."
 )
 

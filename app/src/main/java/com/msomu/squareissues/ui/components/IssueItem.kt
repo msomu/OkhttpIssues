@@ -15,35 +15,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.msomu.squareissues.data.GithubIssuesItem
+import com.msomu.squareissues.data.User
+import com.msomu.squareissues.mock.mockIssueComment
 import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 @Composable
-fun IssueItem(item: GithubIssuesItem, isDetailPage: Boolean, onClick: (Int) -> Unit) {
+fun IssueItem(user : User, id : Int, title : String?, updatedDate : String, body : String, status : String?, isDetailPage: Boolean, onClick: (Int) -> Unit) {
     Card(
         shape = MaterialTheme.shapes.medium,
         elevation = 8.dp,
         backgroundColor = MaterialTheme.colors.background,
         modifier = Modifier.padding(8.dp)
     ) {
-        Column(modifier = Modifier.clickable(onClick = { onClick(item.id) })) {
+        Column(modifier = Modifier.clickable(onClick = { onClick(id) })) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp)
             ) {
-                UserView(item.user, item.updated_at)
-                Status(item.state)
+                UserView(user, updatedDate)
+                status?.let { Status(it) }
+            }
+            title?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.h3,
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
+                )
             }
             Text(
-                text = item.title,
-                style = MaterialTheme.typography.h3,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-            Text(
-                text = if (isDetailPage) item.body else item.body.take(200) + if (item.body.length > 200) "..." else "",
+                text = if (isDetailPage) body else body.take(200) + if (body.length > 200) "..." else "",
                 style = MaterialTheme.typography.body2,
                 modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
             )
@@ -56,6 +60,32 @@ fun IssueItem(item: GithubIssuesItem, isDetailPage: Boolean, onClick: (Int) -> U
 @Composable
 fun DefaultIssueItemPreview() {
     SquareOkhttpIssuesTheme {
-        IssueItem(mockIssues()[0],true) { }
+        val issue = mockIssues()[0]
+        IssueItem(
+            user = issue.user,
+            isDetailPage = true,
+            id= issue.id,
+            body = issue.body,
+            title = issue.title,
+            status = issue.state,
+            updatedDate = issue.updated_at
+        ) { }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultCommentPreview() {
+    SquareOkhttpIssuesTheme {
+        val issue = mockIssueComment()
+        IssueItem(
+            user = issue.user,
+            isDetailPage = false,
+            id= issue.id,
+            body = issue.body,
+            title = null,
+            status = null,
+            updatedDate = issue.updated_at
+        ) { }
     }
 }

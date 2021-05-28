@@ -8,8 +8,17 @@ import com.msomu.squareissues.data.GithubIssuesItem
 @Composable
 fun Issues(issuesList: List<GithubIssuesItem>, onIssueItemClick: (Int) -> Unit) {
     LazyColumn {
-        items(issuesList){item->
-            IssueItem(item, false,onIssueItemClick)
+        items(issuesList){issue->
+            IssueItem(
+                user = issue.user,
+                isDetailPage = false,
+                id= issue.id,
+                body = issue.body,
+                title = issue.title,
+                status = issue.state,
+                updatedDate = issue.updated_at,
+                onClick = onIssueItemClick,
+            )
         }
     }
 }
