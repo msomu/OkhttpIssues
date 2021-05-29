@@ -1,6 +1,5 @@
 package com.msomu.squareissues.ui.screen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msomu.squareissues.data.Comment
@@ -40,7 +39,6 @@ class IssueDetailViewModel @Inject constructor(
 
     private fun getComments(issueNumber: Int) {
         repository.getComments(issueNumber).onEach {
-            Log.d("IssueDetailViewModel","Emited comments ${it.error}")
             _viewCommentsState.value = it
         }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }

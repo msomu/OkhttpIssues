@@ -51,7 +51,6 @@ fun OkHTTPApp() {
                         issueId = backStackEntry.arguments?.getInt(
                             IssueId
                         ) ?: 0,
-                        navigateBack = actions.navigateBack
                     )
                 }
             }
