@@ -12,7 +12,7 @@ fun Issues(issuesList: List<GithubIssuesItem>, onIssueItemClick: (Int) -> Unit) 
             IssueItem(
                 user = issue.user,
                 isDetailPage = false,
-                id= issue.id,
+                id= issue.number,
                 body = issue.body,
                 title = issue.title,
                 status = issue.state,

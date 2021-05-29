@@ -6,12 +6,17 @@ import com.msomu.squareissues.data.remote.IssuesApi
 import com.msomu.squareissues.util.networkBoundResource
 import javax.inject.Inject
 
-class IssueRepository @Inject constructor(private val api: IssuesApi,
-                            private val db: IssuesDatabase) {
+class IssueRepository @Inject constructor(
+    private val api: IssuesApi,
+    private val db: IssuesDatabase
+) {
 
     private val issuesDao = db.issueDao()
+    private val commentsDao = db.commentsDao()
 
-    suspend fun getIssues() = networkBoundResource(
+    fun getIssue(number : Int) = issuesDao.getIssue(number)
+
+    fun getIssues() = networkBoundResource(
         query = {
             issuesDao.getAllIssues()
         },
@@ -26,5 +31,18 @@ class IssueRepository @Inject constructor(private val api: IssuesApi,
         },
     )
 
-    suspend fun fetchIssues() = api.getIssues()
+    fun getComments(issueNumber: Int) = networkBoundResource(
+        query = {
+            commentsDao.getAllComments(issueNumber)
+        },
+        fetch = {
+            api.getComments(issueNumber)
+        },
+        saveFetchResult = { commentResponse ->
+            db.withTransaction {
+                commentsDao.deleteAllComments(issueNumber)
+                commentsDao.insertComments(commentResponse.map { it.toComment(issueNumber) })
+            }
+        }
+    )
 }

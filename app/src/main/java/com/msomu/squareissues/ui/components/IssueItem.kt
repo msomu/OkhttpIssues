@@ -63,7 +63,7 @@ fun DefaultIssueItemPreview() {
         IssueItem(
             user = issue.user,
             isDetailPage = true,
-            id= issue.id,
+            id= issue.number,
             body = issue.body,
             title = issue.title,
             status = issue.state,

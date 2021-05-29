@@ -20,14 +20,14 @@ import com.msomu.squareissues.util.Resource
 
 @Composable
 fun HomeScreen(openIssue: (Int) -> Unit) {
-    val homeViewModel : HomeViewModel = hiltViewModel()
+    val homeViewModel: HomeViewModel = hiltViewModel()
     val currentState: State<Resource<List<GithubIssuesItem>>> = homeViewModel.viewState.collectAsState()
     val githubIssues = currentState.value.data ?: emptyList()
     HomeContent(githubIssues, openIssue)
 }
 
 @Composable
-fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit){
+fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

@@ -13,6 +13,9 @@ interface IssueDao {
     @Query("SELECT * FROM issues")
     fun getAllIssues(): Flow<List<GithubIssuesItem>>
 
+    @Query("SELECT * FROM issues WHERE number = :number")
+    fun getIssue(number : Int): Flow<GithubIssuesItem>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertIssues(issues: List<GithubIssuesItem>)
 
