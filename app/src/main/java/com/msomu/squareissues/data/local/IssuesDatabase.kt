@@ -1,4 +1,4 @@
-package com.msomu.squareissues.data.database
+package com.msomu.squareissues.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

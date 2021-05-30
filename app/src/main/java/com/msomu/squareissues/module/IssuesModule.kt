@@ -2,7 +2,7 @@ package com.msomu.squareissues.module
 
 import android.app.Application
 import androidx.room.Room
-import com.msomu.squareissues.data.database.IssuesDatabase
+import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
 import dagger.Module
 import dagger.Provides

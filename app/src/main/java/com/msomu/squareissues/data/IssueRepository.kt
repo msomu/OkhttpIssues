@@ -1,7 +1,7 @@
 package com.msomu.squareissues.data
 
 import androidx.room.withTransaction
-import com.msomu.squareissues.data.database.IssuesDatabase
+import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
 import com.msomu.squareissues.util.networkBoundResource
 import javax.inject.Inject

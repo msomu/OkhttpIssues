@@ -1,11 +1,10 @@
-package com.msomu.squareissues.data.database
+package com.msomu.squareissues.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.msomu.squareissues.data.Comment
-import com.msomu.squareissues.data.GithubIssuesItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
