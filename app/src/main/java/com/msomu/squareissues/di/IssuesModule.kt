@@ -1,7 +1,9 @@
-package com.msomu.squareissues.module
+package com.msomu.squareissues.di
 
 import android.app.Application
 import androidx.room.Room
+import com.msomu.squareissues.Constants.BASE_URL
+import com.msomu.squareissues.Constants.DATABASE_NAME
 import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
 import dagger.Module
@@ -20,7 +22,7 @@ object IssuesModule {
     @Singleton
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl(IssuesApi.BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -32,6 +34,19 @@ object IssuesModule {
     @Provides
     @Singleton
     fun provideDatabase(app: Application) : IssuesDatabase =
-        Room.databaseBuilder(app, IssuesDatabase::class.java, "issues_database")
+        Room.databaseBuilder(app, IssuesDatabase::class.java, DATABASE_NAME)
             .build()
+
+    @Singleton
+    @Provides
+    fun provideIssueDao(
+        database: IssuesDatabase
+    ) = database.issueDao()
+
+    @Singleton
+    @Provides
+    fun provideCommentDao(
+        database: IssuesDatabase
+    ) = database.commentDao()
+
 }
