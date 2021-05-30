@@ -37,7 +37,7 @@ fun UserView(user: User, date : String) {
         )
         Column {
             Text(text = user.login, style= MaterialTheme.typography.subtitle1)
-            Text(text = date.toDate(), style= MaterialTheme.typography.body1)
+            Text(text = date.toDate() ?: "", style= MaterialTheme.typography.body1)
         }
     }
 }

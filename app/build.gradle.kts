@@ -59,9 +59,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.activity:activity-compose:1.3.0-alpha08")
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha01")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
 
     implementation("com.google.accompanist:accompanist-insets:0.10.0")
@@ -89,6 +87,14 @@ dependencies {
     implementation("androidx.room:room-runtime:2.4.0-alpha02")
     kapt("androidx.room:room-compiler:2.4.0-alpha02")
     implementation("androidx.room:room-ktx:2.4.0-alpha02")
+
+    //test
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+
+    testImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("com.google.truth:truth:1.1.3")
 
 
 }
