@@ -46,6 +46,10 @@ android {
         kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
         kotlinCompilerVersion = "1.4.32"
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -95,6 +99,7 @@ dependencies {
 
     testImplementation("com.google.truth:truth:1.1.3")
     androidTestImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
 
 
 }
