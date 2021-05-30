@@ -9,5 +9,5 @@ import com.msomu.squareissues.data.GithubIssuesItem
 abstract class IssuesDatabase : RoomDatabase() {
 
     abstract fun issueDao(): IssueDao
-    abstract fun commentsDao(): CommentDao
+    abstract fun commentDao(): CommentDao
 }

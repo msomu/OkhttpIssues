@@ -12,7 +12,7 @@ class IssueRepository @Inject constructor(
 ) {
 
     private val issuesDao = db.issueDao()
-    private val commentsDao = db.commentsDao()
+    private val commentsDao = db.commentDao()
 
     fun getIssue(number : Int) = issuesDao.getIssue(number)
 

@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-class CommentResponse(
+data class CommentResponse(
     val body: String,
     val updated_at: String,
     val user: User,
@@ -21,7 +21,7 @@ class CommentResponse(
         onDelete = ForeignKey.CASCADE
     )]
 )
-class Comment(
+data class Comment(
     val issueNumber: Int,
     val body: String,
     val updated_at: String,
