@@ -1,23 +1,27 @@
-package com.msomu.squareissues.data
+package com.msomu.squareissues.repository
 
 import androidx.room.withTransaction
+import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.data.local.CommentDao
 import com.msomu.squareissues.data.local.IssueDao
 import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
+import com.msomu.squareissues.data.toComment
+import com.msomu.squareissues.util.Resource
 import com.msomu.squareissues.util.networkBoundResource
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
-class IssueRepository @Inject constructor(
+class DefaultIssueRepository @Inject constructor(
     private val api: IssuesApi,
     private val db : IssuesDatabase,
     private val issueDao: IssueDao,
     private val commentDao: CommentDao
-) {
+) : IssueRepository {
 
-    fun getIssue(number : Int) = issueDao.getIssue(number)
+    override fun getIssue(number : Int) = issueDao.getIssue(number)
 
-    fun getIssues() = networkBoundResource(
+    override fun getIssues() = networkBoundResource(
         query = {
             issueDao.getAllIssues()
         },
@@ -32,7 +36,7 @@ class IssueRepository @Inject constructor(
         },
     )
 
-    fun getComments(issueNumber: Int) = networkBoundResource(
+    override fun getComments(issueNumber: Int) = networkBoundResource(
         query = {
             commentDao.getAllComments(issueNumber)
         },

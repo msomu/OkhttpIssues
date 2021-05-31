@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msomu.squareissues.data.Comment
 import com.msomu.squareissues.data.GithubIssuesItem
-import com.msomu.squareissues.data.IssueRepository
+import com.msomu.squareissues.repository.DefaultIssueRepository
 import com.msomu.squareissues.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 
 @HiltViewModel
 class IssueDetailViewModel @Inject constructor(
-    private val repository: IssueRepository
+    private val repositoryDefault: DefaultIssueRepository
 ) : ViewModel() {
     private val _viewIssueState: MutableStateFlow<GithubIssuesItem?> = MutableStateFlow(null)
     val viewIssueState: StateFlow<GithubIssuesItem?> = _viewIssueState
@@ -32,13 +32,13 @@ class IssueDetailViewModel @Inject constructor(
     }
 
     private fun getIssueId(issueNumber: Int) {
-        repository.getIssue(issueNumber).onEach {
+        repositoryDefault.getIssue(issueNumber).onEach {
             _viewIssueState.value = it
         }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }
 
     private fun getComments(issueNumber: Int) {
-        repository.getComments(issueNumber).onEach {
+        repositoryDefault.getComments(issueNumber).onEach {
             _viewCommentsState.value = it
         }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }

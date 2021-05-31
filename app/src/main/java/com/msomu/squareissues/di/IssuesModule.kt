@@ -4,8 +4,12 @@ import android.app.Application
 import androidx.room.Room
 import com.msomu.squareissues.Constants.BASE_URL
 import com.msomu.squareissues.Constants.DATABASE_NAME
+import com.msomu.squareissues.data.local.CommentDao
+import com.msomu.squareissues.data.local.IssueDao
 import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
+import com.msomu.squareissues.repository.DefaultIssueRepository
+import com.msomu.squareissues.repository.IssueRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,9 +37,18 @@ object IssuesModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(app: Application) : IssuesDatabase =
+    fun provideDatabase(app: Application): IssuesDatabase =
         Room.databaseBuilder(app, IssuesDatabase::class.java, DATABASE_NAME)
             .build()
+
+    @Provides
+    @Singleton
+    fun provideRepository(
+        api: IssuesApi,
+        database: IssuesDatabase,
+        issueDao: IssueDao,
+        commentDao: CommentDao
+    ): IssueRepository = DefaultIssueRepository(api, database, issueDao, commentDao)
 
     @Singleton
     @Provides
