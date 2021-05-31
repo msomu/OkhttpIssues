@@ -9,10 +9,6 @@ import kotlinx.coroutines.flow.flow
 
 class FakeIssueRepository : IssueRepository {
     private val issues = mutableListOf<GithubIssuesItem>()
-    private val issuesResource: Resource<List<GithubIssuesItem>> = Resource.Success(issues)
-    private val issuesFlow: Flow<Resource<List<GithubIssuesItem>>> = flow {
-        emit(issuesResource)
-    }
 
     private val comments = mutableListOf<Comment>()
     private val commentsResource: Resource<List<Comment>> = Resource.Success(comments)

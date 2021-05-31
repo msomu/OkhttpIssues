@@ -1,24 +1,23 @@
 package com.msomu.squareissues.ui.screen
 
 import com.google.common.truth.Truth.assertThat
+import com.msomu.squareissues.MainCoroutineRule
 import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.mock.mockUser
 import com.msomu.squareissues.repository.FakeIssueRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.setMain
-import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
     private lateinit var viewModel: HomeViewModel
-    private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
+    @get:Rule
+    var mainCoroutineRule = MainCoroutineRule()
 
     private val issue = GithubIssuesItem(
         title = "java.lang.ArrayIndexOutOfBoundsException: size=0 offset=6 byteCount=1 at okio.-Util.checkOffsetAndCount(-Util.kt:26) ",
@@ -32,14 +31,7 @@ class HomeViewModelTest {
 
     @Before
     fun setup() {
-        Dispatchers.setMain(testDispatcher)
         viewModel = HomeViewModel(FakeIssueRepository())
-    }
-
-    @After
-    fun tearDown() {
-        Dispatchers.resetMain()
-        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test
