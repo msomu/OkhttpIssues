@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.msomu.squareissues.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -82,7 +82,6 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
 
     // Retrofit + GSON
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -101,6 +100,11 @@ dependencies {
     testImplementation("com.google.truth:truth:1.1.3")
     androidTestImplementation("com.google.truth:truth:1.1.3")
     androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
+
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.35.1")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.35.1")
 
 
 }

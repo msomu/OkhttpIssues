@@ -1,40 +1,42 @@
 package com.msomu.squareissues.data.local
 
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
+import com.google.common.truth.Truth.assertThat
 import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.mock.mockUser
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import javax.inject.Inject
+import javax.inject.Named
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest
-import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
 import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import org.junit.Rule
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
-@RunWith(AndroidJUnit4::class)
 @SmallTest
+@HiltAndroidTest
 class IssueDaoTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: IssuesDatabase
-    private lateinit var issueDao: IssueDao
+    @Inject
+    @Named("test_db")
+    lateinit var database: IssuesDatabase
+    @Inject
+    lateinit var issueDao: IssueDao
 
     @Before
     fun setup() {
-        database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            IssuesDatabase::class.java
-        ).allowMainThreadQueries().build()
-        issueDao = database.issueDao()
+        hiltRule.inject()
     }
 
     @After
