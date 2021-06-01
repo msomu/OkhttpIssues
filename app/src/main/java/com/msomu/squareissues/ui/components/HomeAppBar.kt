@@ -26,7 +26,7 @@ fun HomeAppBar(
     TopAppBar(
         title = {
             Row {
-                Text(text = "OkHttp", style = MaterialTheme.typography.h1)
+                Text(text = stringResource(R.string.app_name), style = MaterialTheme.typography.h1)
             }
         },
         backgroundColor = backgroundColor,
