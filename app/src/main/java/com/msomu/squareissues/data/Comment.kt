@@ -4,10 +4,12 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 data class CommentResponse(
     val body: String,
-    val updated_at: String,
+    @SerializedName("updated_at")
+    val updatedAt: String,
     val user: User,
     val id: Int
 )
@@ -24,7 +26,8 @@ data class CommentResponse(
 data class Comment(
     val issueNumber: Int,
     val body: String,
-    val updated_at: String,
+    @SerializedName("updated_at")
+    val updatedAt: String,
     @Embedded(prefix = "user_")
     val user: User,
     @PrimaryKey val id: Int,
@@ -34,7 +37,7 @@ fun CommentResponse.toComment(issueNumber: Int) : Comment{
     return Comment(
         issueNumber = issueNumber,
         body = body,
-        updated_at = updated_at,
+        updatedAt = updatedAt,
         user = user,
         id = id
     )
