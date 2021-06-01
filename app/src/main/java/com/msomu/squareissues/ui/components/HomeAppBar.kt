@@ -33,7 +33,7 @@ fun HomeAppBar(
         actions = {
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                 IconButton(
-                    onClick = { /* TODO: Open search */ }
+                    onClick = { }
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Search,
@@ -41,7 +41,7 @@ fun HomeAppBar(
                     )
                 }
                 IconButton(
-                    onClick = { /* TODO: Open account? */ }
+                    onClick = { }
                 ) {
                     Icon(
                         imageVector = Icons.Default.AccountCircle,

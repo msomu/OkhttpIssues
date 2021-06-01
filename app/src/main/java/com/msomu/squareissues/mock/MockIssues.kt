@@ -33,7 +33,7 @@ fun mockIssueComment() = Comment(
 )
 
 fun mockUser() = User(
-    avatar_url = "https://avatars.githubusercontent.com/u/16877020?v=4",
+    avatarUrl = "https://avatars.githubusercontent.com/u/16877020?v=4",
     login = "c0dingEverything"
 )
 
