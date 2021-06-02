@@ -1,6 +1,4 @@
 
-k
-;app/src/main/java/com/msomu/squareissues/di/IssuesModule.kt,7/8/787167c7a5457b52739a25b82e29044a01a928a7
 i
 9app/src/main/java/com/msomu/squareissues/ui/theme/Type.kt,5/1/51d1999e53466ddcfc66e03d938e030aa6d3257d
 j
@@ -17,20 +15,12 @@ q
 Aapp/src/main/java/com/msomu/squareissues/data/local/CommentDao.kt,4/1/41356c5f90764fb13ff05299251925047d6e095f
 u
 Eapp/src/main/java/com/msomu/squareissues/data/local/IssuesDatabase.kt,8/2/82033a9e24dfae2c46fbfefba2eae12f357b63d1
-q
-Aapp/src/main/java/com/msomu/squareissues/data/remote/IssuesApi.kt,2/f/2fbcd1eb2d74b13d0419f3dad7f8ba1d719f91d8
-e
-5app/src/main/java/com/msomu/squareissues/data/User.kt,7/b/7b375ff4ac17fc138e54d57bdfbb3c3f23520851
-h
-8app/src/main/java/com/msomu/squareissues/data/Comment.kt,2/3/2369e4a311d4bcd5266b2e7e88d67514951c45f6
 i
 9app/src/main/java/com/msomu/squareissues/util/DateUtil.kt,1/0/1077f13d22e9b14f59c3040307a376c4456fc413
 i
 9app/src/main/java/com/msomu/squareissues/util/Resource.kt,8/b/8be2752249ef116bdebfe7bc293ff829ec064f53
 u
 Eapp/src/main/java/com/msomu/squareissues/util/NetworkBoundResource.kt,a/6/a6e582847c2ddea44e5521df2809969bb9e58460
-e
-5app/src/main/java/com/msomu/squareissues/Constants.kt,d/3/d36cee1a404d5305dad88db2b54f8f3719b3546f
 m
 =app/src/main/java/com/msomu/squareissues/IssuesApplication.kt,e/c/ec8fc377609d47ef5309e8d9e11deb410aecdd20
 k
@@ -58,8 +48,6 @@ L
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
 @
-build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
-@
 local.properties,0/7/0712df971a99ac4d2fccb8e0fb19f377f3374cca
 A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
@@ -75,8 +63,6 @@ P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 m
 =app/src/main/java/com/msomu/squareissues/data/GithubIssues.kt,2/e/2e1d9fffe4f592ff63f910560b593fc250ad53e9
-q
-Aapp/src/main/java/com/msomu/squareissues/data/GithubIssuesItem.kt,f/6/f62a4e904e50d9006efda8fabf86fab4a558cc23
 r
 Bapp/src/main/java/com/msomu/squareissues/ui/components/UserView.kt,0/0/00ed6a0113c5bf3e58d10e59b045954f8e7b8109
 k

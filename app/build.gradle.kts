@@ -81,9 +81,12 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
 
-    // Retrofit + GSON
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // KTOR
+    implementation("io.ktor:ktor-client-okhttp:${rootProject.extra["ktor_version"]}")
+    implementation("io.ktor:ktor-client-json:${rootProject.extra["ktor_version"]}")
+    implementation("io.ktor:ktor-client-gson:${rootProject.extra["ktor_version"]}")
+    implementation("io.ktor:ktor-client-logging-jvm:${rootProject.extra["ktor_version"]}")
+    implementation("com.github.mrmike:ok2curl:0.7.0")
 
     // Room
     implementation("androidx.room:room-runtime:2.4.0-alpha02")
