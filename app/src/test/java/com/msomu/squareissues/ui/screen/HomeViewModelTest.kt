@@ -38,6 +38,7 @@ class HomeViewModelTest {
     fun `check if we are getting data`() =
         runBlocking {
             val value = viewModel.viewState.first().data?.first()
+            println("The value received is $value")
             assertThat(value).isEqualTo(issue)
         }
 }

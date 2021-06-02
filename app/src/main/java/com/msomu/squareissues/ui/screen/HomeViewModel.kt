@@ -34,6 +34,7 @@ class HomeViewModel @Inject constructor(
 
     private fun fetchIssues() {
             repository.getIssues().onEach {
+                println("captured emit size is :${it.data?.size}")
                 _viewState.value = it
             }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }
