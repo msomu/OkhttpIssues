@@ -21,13 +21,19 @@ This Sample app attempts to use the latest cutting edge libraries and tools. As 
 
 * Entirely written in [Kotlin](https://kotlinlang.org/).
 * UI completely written in [Jetpack Compose](https://developer.android.com/jetpack/compose)
-* Uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) throughout.
-* Uses many of the [Architecture Components](https://developer.android.com/topic/libraries/architecture/), including: Room, Lifecycle, Navigation.
+* Uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html)
+  throughout.
+* Uses many of
+  the [Architecture Components](https://developer.android.com/topic/libraries/architecture/),
+  including: Room, Lifecycle, Navigation.
 * Uses [Hilt](https://dagger.dev/hilt/) for dependency injection
 
 ## Development setup
 
-First off, you require the latest [Android Studio Arctic Fox](https://developer.android.com/studio/preview) release to be able to build the app. This is because the project is written in [Jetpack Compose](https://developer.android.com/jetpack/compose)
+First off, you require the
+latest [Android Studio Arctic Fox](https://developer.android.com/studio/preview) release to be able
+to build the app. This is because the project is written
+in [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 ### Main Issue List
 
@@ -51,23 +57,26 @@ This screen [`IssueDetailScreen.kt`][5]  dives into the Issue Details and showin
 the issues.
 
 [4]: app/src/main/java/com/msomu/squareissues/ui/screen
+
 [5]: app/src/main/java/com/msomu/squareissues/ui/screen/IssueDetailScreen.kt
 
 ### Data
 
 The data in the sample is fetched from the `api.github.com` and stored in the Database for caching
 purposes. The app uses the MVVM pattern. Where the data flows from the repository to the View Model.
-The Viewmodel observes the changes with viewModelScope and the UI collects the flow as State.
-The State is consumed on the UI, so as the data changes the state changes and the UI is recomposed.
+The Viewmodel observes the changes with viewModelScope and the UI collects the flow as State. The
+State is consumed on the UI, so as the data changes the state changes and the UI is recomposed.
 
 ### UI and Instrumentation testing
 
 Run UI tests from Android Studio or with the `./gradlew connectedCheck` command.
+
 * The Test for the UI at [`HomeScreen.kt`][6] is written at [`HomeScreenTest.kt`][7]
-* The Test for the Database DAO is at [`IssueDao.kt`][7] is written at [`IssueDaoTest.kt`][8] and same
-for the Comment
+* The Test for the Database DAO is at [`IssueDao.kt`][7] is written at [`IssueDaoTest.kt`][8] and
+  same for the Comment
 
 [6]: app/src/main/java/com/msomu/squareissues/ui/screen/HomeScreen.kt
+
 [7]: app/src/androidTest/java/com/msomu/squareissues/ui/screen/HomeScreenTest.kt
 
 ### Unit testing
@@ -76,13 +85,26 @@ for the Comment
 * The Test for the ViewModel at [`HomeViewModel.kt`][10] is written at [`HomeViewModelTest.kt`][11]
 * The Test for the DateUtil at [`DateUtil.kt`][12] is written at [`DateUtilKtTest.kt`][13]
 
-
 [8]: app/src/test/java/com/msomu/squareissues/repository/FakeIssueRepository.kt
+
 [9]: app/src/main/java/com/msomu/squareissues/repository/DefaultIssueRepository.kt
+
 [10]: app/src/main/java/com/msomu/squareissues/ui/screen/HomeViewModel.kt
+
 [11]: app/src/test/java/com/msomu/squareissues/ui/screen/HomeViewModelTest.kt
+
 [12]: app/src/main/java/com/msomu/squareissues/util/DateUtil.kt
+
 [13]: app/src/test/java/com/msomu/squareissues/util/DateUtilKtTest.kt
+
+### Github actions
+
+* The build will be generated on every commit on the `main` branch.
+* All the tests including unit tests and instrumentation tests will run on every commit on
+  the `main` branch.
+* The reports are uploaded to [Github Actions]("https://github.com/msomu/OkhttpIssues/actions")
+  after every test.
+
 ## License
 
 ```
