@@ -6,22 +6,28 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.insets.statusBarsHeight
 import com.msomu.squareissues.data.GithubIssuesItem
-import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.components.HomeAppBar
 import com.msomu.squareissues.ui.components.Issues
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
+import com.msomu.squareissues.util.Resource
 
 @Composable
 fun HomeScreen(openIssue: (Int) -> Unit) {
-    HomeContent(mockIssues(), openIssue)
+    val homeViewModel: HomeViewModel = hiltViewModel()
+    val currentState: State<Resource<List<GithubIssuesItem>>> = homeViewModel.viewState.collectAsState()
+    val githubIssues = currentState.value.data ?: emptyList()
+    HomeContent(githubIssues, openIssue)
 }
 
 @Composable
-fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit){
+fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

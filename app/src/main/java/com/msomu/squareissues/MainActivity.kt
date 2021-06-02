@@ -19,7 +19,9 @@ import com.msomu.squareissues.ui.Destinations.TaskDetailArgs.IssueId
 import com.msomu.squareissues.ui.screen.HomeScreen
 import com.msomu.squareissues.ui.screen.IssueDetailScreen
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +51,6 @@ fun OkHTTPApp() {
                         issueId = backStackEntry.arguments?.getInt(
                             IssueId
                         ) ?: 0,
-                        navigateBack = actions.navigateBack
                     )
                 }
             }

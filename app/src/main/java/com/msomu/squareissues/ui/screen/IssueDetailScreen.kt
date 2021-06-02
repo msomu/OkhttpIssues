@@ -10,22 +10,33 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.insets.statusBarsHeight
-import com.msomu.squareissues.data.IssueDetail
-import com.msomu.squareissues.mock.mockIssueDetail
+import com.msomu.squareissues.data.Comment
+import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.components.IssueItem
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
+import com.msomu.squareissues.util.Resource
 
 @Composable
-fun IssueDetailScreen(issueId: Int, navigateBack: () -> Unit) {
-    IssueDetailContent(mockIssueDetail())
+fun IssueDetailScreen(issueId: Int) {
+    val viewModel: IssueDetailViewModel = hiltViewModel()
+    viewModel.getData(issueId)
+    val issue = viewModel.viewIssueState.collectAsState()
+    val comments = viewModel.viewCommentsState.collectAsState()
+    IssueDetailContent(issue, comments)
 }
 
 @Composable
-fun IssueDetailContent(issueDetail: IssueDetail) {
+fun IssueDetailContent(
+    githubIssuesItem: State<GithubIssuesItem?>,
+    commentsResource: State<Resource<List<Comment>>>
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,27 +53,51 @@ fun IssueDetailContent(issueDetail: IssueDetail) {
         TopAppBar(
             title = {
                 Text(
-                    text = "Issue " + issueDetail.githubIssuesItem.number,
+                    text = "Issue ${githubIssuesItem?.value?.number ?: ""}",
                     style = MaterialTheme.typography.h1
                 )
             })
         LazyColumn {
-            val issue = issueDetail.githubIssuesItem
-            item { IssueItem(
-                user = issue.user,
-                isDetailPage = true,
-                id= issue.id,
-                body = issue.body,
-                title = issue.title,
-                status = issue.state,
-                updatedDate = issue.updated_at,
-                onClick = { }
-            ) }
-            items(issueDetail.comments){item->
+            githubIssuesItem.value?.let {
+                item {
+                    IssueItem(
+                        user = it.user,
+                        isDetailPage = true,
+                        id = it.number,
+                        body = it.body,
+                        title = it.title,
+                        status = it.state,
+                        updatedDate = it.updated_at,
+                        onClick = { }
+                    )
+                }
+            }
+            when (commentsResource.value) {
+                is Resource.Loading -> {
+                    item {
+                        Text(text = "Loading", style = MaterialTheme.typography.h3)
+                    }
+                }
+                is Resource.Error -> {
+                    item {
+                        Text(
+                            text = "Didn't fetch the latest comments",
+                            style = MaterialTheme.typography.body2
+                        )
+                    }
+                }
+                is Resource.Success -> {
+                    item {
+                        Text(text = "Comments", style = MaterialTheme.typography.h3)
+                    }
+                }
+            }
+            val comments = commentsResource.value.data ?: emptyList()
+            items(comments) { item ->
                 IssueItem(
                     user = item.user,
                     isDetailPage = true,
-                    id= item.id,
+                    id = item.id,
                     body = item.body,
                     title = null,
                     status = null,
@@ -78,6 +113,6 @@ fun IssueDetailContent(issueDetail: IssueDetail) {
 @Composable
 fun DefaultIssueDetailPreview() {
     SquareOkhttpIssuesTheme {
-        IssueDetailScreen(mockIssues()[0].id) {}
+        IssueDetailScreen(mockIssues()[0].number)
     }
 }

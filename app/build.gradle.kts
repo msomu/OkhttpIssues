@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -64,4 +66,29 @@ dependencies {
 
     implementation("com.google.accompanist:accompanist-insets:0.10.0")
     implementation("com.google.accompanist:accompanist-coil:0.10.0")
+
+    // Activity KTX for viewModels()
+    implementation("androidx.activity:activity-ktx:1.2.3")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:${rootProject.extra["hilt_version"]}")
+    kapt("com.google.dagger:hilt-android-compiler:${rootProject.extra["hilt_version"]}")
+
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha02")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+
+    // Retrofit + GSON
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.4.0-alpha02")
+    kapt("androidx.room:room-compiler:2.4.0-alpha02")
+    implementation("androidx.room:room-ktx:2.4.0-alpha02")
+
+
 }
