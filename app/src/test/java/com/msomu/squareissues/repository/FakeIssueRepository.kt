@@ -42,7 +42,9 @@ class FakeIssueRepository : IssueRepository {
 
     override fun getIssues() = flow {
         val issues = listOf(issue)
+        println("issues ${issues.size}")
         val resource = Resource.Success(issues)
+        println("resource ${resource.data?.size}")
         emit(resource)
     }
 
