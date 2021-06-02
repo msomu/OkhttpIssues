@@ -35,14 +35,10 @@ e
 5app/src/main/java/com/msomu/squareissues/Constants.kt,d/3/d36cee1a404d5305dad88db2b54f8f3719b3546f
 m
 =app/src/main/java/com/msomu/squareissues/IssuesApplication.kt,e/c/ec8fc377609d47ef5309e8d9e11deb410aecdd20
-o
-?app/src/test/java/com/msomu/squareissues/util/DateUtilKtTest.kt,a/5/a566ca25cfe9b7f9de603a748b7016ad3619e727
 k
 ;app/src/test/java/com/msomu/squareissues/ExampleUnitTest.kt,6/9/69feaaf35e72555d22be992d5619dde103202285
 m
 =app/src/test/java/com/msomu/squareissues/MainCoroutineRule.kt,0/5/0556431b6cf83e4674712ee4a82f29a267ae98ae
-s
-Capp/src/androidTest/java/com/msomu/squareissues/di/TestAppModule.kt,3/6/36d02e35d363558e753fc7b60724bc1bd65e9f4a
 z
 Japp/src/androidTest/java/com/msomu/squareissues/data/local/IssueDaoTest.kt,d/b/dbd18c50409d8980786bb01821a64349e3a0df4d
 |
