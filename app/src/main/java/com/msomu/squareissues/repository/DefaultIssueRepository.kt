@@ -1,16 +1,13 @@
 package com.msomu.squareissues.repository
 
 import androidx.room.withTransaction
-import com.msomu.squareissues.data.GithubIssuesItem
 import com.msomu.squareissues.data.local.CommentDao
 import com.msomu.squareissues.data.local.IssueDao
 import com.msomu.squareissues.data.local.IssuesDatabase
 import com.msomu.squareissues.data.remote.IssuesApi
 import com.msomu.squareissues.data.toComment
-import com.msomu.squareissues.util.Resource
 import com.msomu.squareissues.util.networkBoundResource
 import javax.inject.Inject
-import kotlinx.coroutines.flow.Flow
 
 class DefaultIssueRepository @Inject constructor(
     private val api: IssuesApi,

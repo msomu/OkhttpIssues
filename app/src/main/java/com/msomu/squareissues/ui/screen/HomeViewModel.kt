@@ -1,6 +1,5 @@
 package com.msomu.squareissues.ui.screen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msomu.squareissues.data.GithubIssuesItem
