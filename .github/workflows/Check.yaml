@@ -55,7 +55,7 @@ jobs:
           java-version: 11
 
       - name: Run Unit Tests
-        run: ./gradlew tests --stacktrace
+        run: ./gradlew test --stacktrace
       
       - name: Upload test reports
         if: always()
