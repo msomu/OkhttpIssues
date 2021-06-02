@@ -83,10 +83,6 @@ k
 ;app/src/main/java/com/msomu/squareissues/mock/MockIssues.kt,9/2/9205a22beec8b7af14a1a581d9e59dfd291f088e
 w
 Gapp/src/main/java/com/msomu/squareissues/ui/screen/IssueDetailScreen.kt,6/9/69d85e48ff8e89bde20e7a141eb1ba5550acaacb
-j
-:app/src/main/java/com/msomu/squareissues/ui/theme/Color.kt,d/3/d3ec6d81f653aa0e791e6c20e1152992f67a7660
-j
-:app/src/main/java/com/msomu/squareissues/ui/theme/Theme.kt,8/9/891d0e61a4e603e083c754bf011cb062888e9dee
 h
 8app/src/main/java/com/msomu/squareissues/MainActivity.kt,2/4/24955ac771f889657a0b54ee4bd085ebdd3ff35f
 p
