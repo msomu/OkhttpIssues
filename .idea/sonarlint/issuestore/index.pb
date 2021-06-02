@@ -29,8 +29,6 @@ i
 9app/src/main/java/com/msomu/squareissues/util/Resource.kt,8/b/8be2752249ef116bdebfe7bc293ff829ec064f53
 u
 Eapp/src/main/java/com/msomu/squareissues/util/NetworkBoundResource.kt,a/6/a6e582847c2ddea44e5521df2809969bb9e58460
-v
-Fapp/src/main/java/com/msomu/squareissues/repository/IssueRepository.kt,3/f/3ffb97840d65f015ae2ba9fc037bd429a1f5d0ff
 e
 5app/src/main/java/com/msomu/squareissues/Constants.kt,d/3/d36cee1a404d5305dad88db2b54f8f3719b3546f
 m
