@@ -3,36 +3,56 @@ package com.msomu.squareissues
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.remember
+import androidx.core.view.WindowCompat
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.msomu.squareissues.ui.Actions
+import com.msomu.squareissues.ui.Destinations.Home
+import com.msomu.squareissues.ui.Destinations.IssueDetail
+import com.msomu.squareissues.ui.Destinations.TaskDetailArgs.IssueId
+import com.msomu.squareissues.ui.screen.HomeScreen
+import com.msomu.squareissues.ui.screen.IssueDetailScreen
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // This app draws behind the system bars, so we want to handle fitting system windows
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
-            SquareOkhttpIssuesTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
+            OkHTTPApp()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
+fun OkHTTPApp() {
     SquareOkhttpIssuesTheme {
-        Greeting("Android")
+        ProvideWindowInsets {
+            val navController = rememberNavController()
+            val actions = remember(navController) { Actions(navController) }
+            NavHost(navController = navController, startDestination = Home) {
+                composable(Home) { HomeScreen(actions.openIssue) }
+                composable(
+                    "$IssueDetail/{$IssueId}",
+                    arguments = listOf(navArgument(IssueId) { type = NavType.IntType })
+                ) { backStackEntry ->
+                    IssueDetailScreen(
+                        issueId = backStackEntry.arguments?.getInt(
+                            IssueId
+                        ) ?: 0,
+                        navigateBack = actions.navigateBack
+                    )
+                }
+            }
+        }
     }
 }

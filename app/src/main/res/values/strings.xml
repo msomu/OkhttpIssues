@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Square Okhttp Issues</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_account">Account</string>
 </resources>
