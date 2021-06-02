@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.msomu.squareissues.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -46,6 +46,10 @@ android {
         kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
         kotlinCompilerVersion = "1.4.32"
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
 }
 
 dependencies {
@@ -59,10 +63,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.activity:activity-compose:1.3.0-alpha08")
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha01")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
 
     implementation("com.google.accompanist:accompanist-insets:0.10.0")
     implementation("com.google.accompanist:accompanist-coil:0.10.0")
@@ -90,5 +90,20 @@ dependencies {
     kapt("androidx.room:room-compiler:2.4.0-alpha02")
     implementation("androidx.room:room-ktx:2.4.0-alpha02")
 
+    //test
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+
+    testImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("com.google.truth:truth:1.1.3")
+    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
+
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.35.1")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.35.1")
+
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
 
 }

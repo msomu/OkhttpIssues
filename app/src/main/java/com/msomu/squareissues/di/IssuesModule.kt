@@ -1,0 +1,65 @@
+package com.msomu.squareissues.di
+
+import android.app.Application
+import androidx.room.Room
+import com.msomu.squareissues.Constants.BASE_URL
+import com.msomu.squareissues.Constants.DATABASE_NAME
+import com.msomu.squareissues.data.local.CommentDao
+import com.msomu.squareissues.data.local.IssueDao
+import com.msomu.squareissues.data.local.IssuesDatabase
+import com.msomu.squareissues.data.remote.IssuesApi
+import com.msomu.squareissues.repository.DefaultIssueRepository
+import com.msomu.squareissues.repository.IssueRepository
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+@Module
+@InstallIn(SingletonComponent::class)
+object IssuesModule {
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideRestaurantApi(retrofit: Retrofit): IssuesApi =
+        retrofit.create(IssuesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideDatabase(app: Application): IssuesDatabase =
+        Room.databaseBuilder(app, IssuesDatabase::class.java, DATABASE_NAME)
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideRepository(
+        api: IssuesApi,
+        database: IssuesDatabase,
+        issueDao: IssueDao,
+        commentDao: CommentDao
+    ): IssueRepository = DefaultIssueRepository(api, database, issueDao, commentDao)
+
+    @Singleton
+    @Provides
+    fun provideIssueDao(
+        database: IssuesDatabase
+    ) = database.issueDao()
+
+    @Singleton
+    @Provides
+    fun provideCommentDao(
+        database: IssuesDatabase
+    ) = database.commentDao()
+
+}

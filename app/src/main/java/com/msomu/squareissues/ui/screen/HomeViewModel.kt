@@ -1,9 +1,11 @@
 package com.msomu.squareissues.ui.screen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msomu.squareissues.data.GithubIssuesItem
-import com.msomu.squareissues.data.IssueRepository
+import com.msomu.squareissues.repository.DefaultIssueRepository
+import com.msomu.squareissues.repository.IssueRepository
 import com.msomu.squareissues.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,11 +15,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 /**
- * The [HomeViewModel] takes in a [IssueRepository] to request data, transforms the data into a
+ * The [HomeViewModel] takes in a [DefaultIssueRepository] to request data, transforms the data into a
  * HomeViewState that can be exposed by the [viewState] flow in order for the view to render
  * the relevant issues
  */
@@ -36,6 +36,7 @@ class HomeViewModel @Inject constructor(
     private fun fetchIssues() {
             repository.getIssues().onEach {
                 _viewState.value = it
+                println("value changed at fetchIssues ${it.data}")
             }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }
 }

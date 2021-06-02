@@ -1,4 +1,4 @@
-package com.msomu.squareissues.data.database
+package com.msomu.squareissues.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -9,5 +9,5 @@ import com.msomu.squareissues.data.GithubIssuesItem
 abstract class IssuesDatabase : RoomDatabase() {
 
     abstract fun issueDao(): IssueDao
-    abstract fun commentsDao(): CommentDao
+    abstract fun commentDao(): CommentDao
 }

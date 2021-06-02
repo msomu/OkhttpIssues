@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.insets.statusBarsHeight
 import com.msomu.squareissues.data.Comment
 import com.msomu.squareissues.data.GithubIssuesItem
+import com.msomu.squareissues.data.IssueData
 import com.msomu.squareissues.mock.mockIssues
 import com.msomu.squareissues.ui.components.IssueItem
 import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
@@ -53,7 +54,7 @@ fun IssueDetailContent(
         TopAppBar(
             title = {
                 Text(
-                    text = "Issue ${githubIssuesItem?.value?.number ?: ""}",
+                    text = "Issue ${githubIssuesItem.value?.number ?: ""}",
                     style = MaterialTheme.typography.h1
                 )
             })
@@ -61,13 +62,15 @@ fun IssueDetailContent(
             githubIssuesItem.value?.let {
                 item {
                     IssueItem(
-                        user = it.user,
+                        issueData = IssueData(
+                            user = it.user,
+                            id = it.number,
+                            body = it.body,
+                            title = it.title,
+                            status = it.state,
+                            updatedDate = it.updatedAt,
+                        ),
                         isDetailPage = true,
-                        id = it.number,
-                        body = it.body,
-                        title = it.title,
-                        status = it.state,
-                        updatedDate = it.updated_at,
                         onClick = { }
                     )
                 }
@@ -95,13 +98,15 @@ fun IssueDetailContent(
             val comments = commentsResource.value.data ?: emptyList()
             items(comments) { item ->
                 IssueItem(
-                    user = item.user,
+                    issueData = IssueData(
+                        user = item.user,
+                        id = item.id,
+                        body = item.body,
+                        title = null,
+                        status = null,
+                        updatedDate = item.updatedAt,
+                    ),
                     isDetailPage = true,
-                    id = item.id,
-                    body = item.body,
-                    title = null,
-                    status = null,
-                    updatedDate = item.updated_at,
                     onClick = { }
                 )
             }
