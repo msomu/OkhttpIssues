@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor(
     private fun fetchIssues() {
             repository.getIssues().onEach {
                 _viewState.value = it
-                println("value changed at fetchIssues ${it.data}")
             }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
     }
 }
