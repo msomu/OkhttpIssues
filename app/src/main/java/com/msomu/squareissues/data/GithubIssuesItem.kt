@@ -17,6 +17,7 @@ data class GithubIssuesItem(
     @PrimaryKey val number: Int,
     @SerializedName("comments_url")
     val commentsUrl: String,
+    var stared : Boolean = false
 )
 
 data class IssueData(

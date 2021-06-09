@@ -47,4 +47,10 @@ class DefaultIssueRepository @Inject constructor(
             }
         }
     )
+
+    override suspend fun starItem(starItemId: Int) {
+        val issue = issueDao.getIssueSus(starItemId)
+        issue.stared = !issue.stared
+        issueDao.updateIssue(issue)
+    }
 }

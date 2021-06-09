@@ -23,11 +23,13 @@ fun HomeScreen(openIssue: (Int) -> Unit) {
     val homeViewModel: HomeViewModel = hiltViewModel()
     val currentState: State<Resource<List<GithubIssuesItem>>> = homeViewModel.viewState.collectAsState()
     val githubIssues = currentState.value.data ?: emptyList()
-    HomeContent(githubIssues, openIssue)
+    HomeContent(githubIssues, openIssue){ starItemId->
+        homeViewModel.starItem(starItemId)
+    }
 }
 
 @Composable
-fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit) {
+fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit, onStarItem: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,7 +44,7 @@ fun HomeContent(issuesList: List<GithubIssuesItem>, openIssue: (Int) -> Unit) {
                 .statusBarsHeight()
         )
         HomeAppBar(MaterialTheme.colors.background)
-        Issues(issuesList, openIssue)
+        Issues(issuesList, openIssue, onStarItem)
     }
 }
 

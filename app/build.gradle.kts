@@ -79,7 +79,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha02")
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0-native-mt")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
 
     // KTOR
     implementation("io.ktor:ktor-client-okhttp:${rootProject.extra["ktor_version"]}")

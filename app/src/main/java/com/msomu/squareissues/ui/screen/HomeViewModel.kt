@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 /**
  * The [HomeViewModel] takes in a [DefaultIssueRepository] to request data, transforms the data into a
@@ -36,5 +37,11 @@ class HomeViewModel @Inject constructor(
             repository.getIssues().onEach {
                 _viewState.value = it
             }.flowOn(Dispatchers.IO).launchIn(viewModelScope)
+    }
+
+    fun starItem(starItemId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.starItem(starItemId)
+        }
     }
 }

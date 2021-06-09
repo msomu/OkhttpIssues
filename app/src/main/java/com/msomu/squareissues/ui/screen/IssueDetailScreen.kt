@@ -71,7 +71,8 @@ fun IssueDetailContent(
                             updatedDate = it.updatedAt,
                         ),
                         isDetailPage = true,
-                        onClick = { }
+                        onClick = { },
+                    onStarClick = { }
                     )
                 }
             }
@@ -107,7 +108,8 @@ fun IssueDetailContent(
                         updatedDate = item.updatedAt,
                     ),
                     isDetailPage = true,
-                    onClick = { }
+                    onClick = { },
+                    onStarClick = {}
                 )
             }
         }

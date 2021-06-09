@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,7 +26,8 @@ import com.msomu.squareissues.ui.theme.SquareOkhttpIssuesTheme
 fun IssueItem(
     issueData: IssueData,
     isDetailPage: Boolean,
-    onClick: (Int) -> Unit
+    onClick: (Int) -> Unit,
+    onStarClick: (Int) -> Unit,
 ) {
     Card(
         shape = MaterialTheme.shapes.medium,
@@ -41,6 +45,11 @@ fun IssueItem(
             ) {
                 UserView(issueData.user, issueData.updatedDate)
                 issueData.status?.let { Status(it) }
+                // TODO remove this for comments
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = "Start Issue",
+                    modifier = Modifier.clickable { onStarClick(issueData.id) })
             }
             issueData.title?.let {
                 Text(
@@ -74,7 +83,9 @@ fun DefaultIssueItemPreview() {
                 updatedDate = issue.updatedAt
             ),
             isDetailPage = true,
-        ) { }
+            onStarClick = {},
+            onClick = {}
+        )
     }
 }
 
@@ -93,6 +104,8 @@ fun DefaultCommentPreview() {
                 updatedDate = issue.updatedAt
             ),
             isDetailPage = false,
-        ) { }
+            onStarClick = {},
+            onClick = {}
+        )
     }
 }
